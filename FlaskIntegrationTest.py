@@ -8,7 +8,7 @@ class FlaskIntegrationTestCase(unittest.TestCase):
     def setUp(self):
         app.config['TESTING'] = True
         self.client = app.test_client()
-    
+
     def test_add_remove_todos_and_download_excel(self):
         for i in range(1,6):
             self.client.post('/add', data={
@@ -19,7 +19,10 @@ class FlaskIntegrationTestCase(unittest.TestCase):
 
         response = self.client.get('/download_todos')
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content_type, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        self.assertEqual(
+            response.content_type,
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        )
 
         with io.BytesIO(response.data) as buffer:
             df = pd.read_excel(buffer)
