@@ -26,3 +26,7 @@ def download():
         'todo_id': list(range(len(todos))),
         'todo': todos
     })
+
+    df.to_excel('todos.xlsx')
+
+    return send_from_directory('.', 'todos.xlsx')
