@@ -6,6 +6,18 @@
     <title>Todos</title>
 </head>
 <body>
-    
+    <ol>
+        {% for todo in todos %}
+        <li>
+            {{todo}}
+        </li>
+        <a href="{{ url_for('remove', index=loop.index)}}">Remove</a>
+        {% endfor %}
+    </ol>
+    <form action="{{ url_for('add') }}" method="post">
+        <input type="text" name="todo">
+        <input type="submit" value="Add Todo">
+    </form>
+    <a href="{{url_for('download')}}">Download</a>
 </body>
 </html>
