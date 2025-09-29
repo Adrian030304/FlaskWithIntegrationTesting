@@ -30,3 +30,6 @@ def download():
     df.to_excel('todos.xlsx')
 
     return send_from_directory('.', 'todos.xlsx')
+
+if __name__ == '__main__':
+    app.run(debug=True)
