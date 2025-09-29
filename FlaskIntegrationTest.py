@@ -23,5 +23,4 @@ class FlaskIntegrationTestCase(unittest.TestCase):
 
         with io.BytesIO(response.data) as buffer:
             df = pd.read_excel(buffer)
-
             self.assertListEqual(['Todo 1', 'Todo 3', 'Todo 4', 'Todo 5'], df.todo.values.tolist())
